@@ -1,0 +1,4 @@
+FLOAT f
+FOR f <- 0 TO 1 STEP 0.25 DO
+    PRINTN f
+END

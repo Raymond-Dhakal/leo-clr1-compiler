@@ -1,0 +1,1 @@
+semantic error: operator '+' requires numeric (INT or FLOAT) operands, but got BOOL and INT

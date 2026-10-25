@@ -1,0 +1,6 @@
+    a = 1
+    b = TRUE
+    t1 = - a
+    r = t1
+    t2 = NOT b
+    b = t2

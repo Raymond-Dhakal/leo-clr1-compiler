@@ -1,0 +1,1 @@
+semantic error: operator 'MOD' requires INT operands, but got INT and FLOAT

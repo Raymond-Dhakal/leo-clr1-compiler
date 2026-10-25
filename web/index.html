@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leo Playground</title>
+<meta name="description" content="Write Leo programs, run them in the browser and inspect the compiler phases.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="logo">L</span><div><h1>Leo Playground</h1><p>Leo programming language compiled to C</p></div></div>
+  <div class="controls">
+    <a class="ask-nav" href="/ask.html">Ask about Leo</a>
+    <label class="field">Example
+      <select id="example" aria-label="Load an example"></select>
+    </label>
+    <label class="check"><input type="checkbox" id="optimize" checked> Optimize</label>
+    <button id="run" class="primary" title="Ctrl+Enter">Run <kbd>Ctrl+Enter</kbd></button>
+    <button id="stop" class="danger" hidden>Stop</button>
+  </div>
+</header>
+
+<main class="grid">
+  <section class="pane" aria-label="Source code">
+    <div class="pane-head">
+      <h2>Source <span class="muted" id="filename">program.leo</span></h2>
+      <div class="actions">
+        <button id="share" class="ghost">Copy link</button>
+        <button id="download-leo" class="ghost">Download .leo</button>
+      </div>
+    </div>
+    <div class="editor">
+      <pre id="gutter" aria-hidden="true">1</pre>
+      <textarea id="code" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-label="Leo source code"></textarea>
+    </div>
+    <div class="pane-head small">
+      <h2>Program input <span class="muted">optional values to provide before running</span></h2>
+    </div>
+    <textarea id="stdin" class="stdin" spellcheck="false" rows="2" placeholder="for example: 12" aria-label="Program input"></textarea>
+  </section>
+
+  <section class="pane" aria-label="Results">
+    <div class="phases" id="phases" aria-live="polite"></div>
+    <div class="tabs" role="tablist" id="tabs">
+      <button role="tab" data-tab="output" class="active">Output</button>
+      <button role="tab" data-tab="tokens">Tokens</button>
+      <button role="tab" data-tab="ast">AST</button>
+      <button role="tab" data-tab="ir">IR</button>
+      <button role="tab" data-tab="opt-ir">Optimized IR</button>
+      <button role="tab" data-tab="c">C code</button>
+    </div>
+    <div id="messages" class="messages" hidden></div>
+    <pre id="view" class="view" tabindex="0">Press Run to compile and execute the program.</pre>
+    <form id="stdin-form" class="interactive-input" hidden>
+      <label for="interactive-value" id="interactive-label">Program is waiting for input</label>
+      <div class="input-row"><input id="interactive-value" autocomplete="off" spellcheck="false"><button class="primary" type="submit">Send</button></div>
+    </form>
+    <div class="pane-foot"><span id="status" class="muted"></span><button id="download-c" class="ghost" hidden>Download .c</button></div>
+  </section>
+</main>
+
+<footer>
+  <p>Leo programs are compiled to C. The playground also shows the compiler phases and runs the generated intermediate code in your browser. Use <code>leoc</code> in the terminal to generate C or build a native executable with GCC.</p>
+</footer>
+<script type="module" src="app.js?v=leo1"></script>
+</body>
+</html>

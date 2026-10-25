@@ -1,3 +1,10 @@
+/*
+ * goto.c
+ * Owner: Member 3 - Goyal Hemant Anil (24BYB0059)
+ *
+ * GOTO(I, X) = CLOSURE({ [A -> alpha X . beta, a] |
+ *                          [A -> alpha . X beta, a] in I })
+ */
 #include <stdlib.h>
 #include "goto.h"
 

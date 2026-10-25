@@ -1,0 +1,7 @@
+How many numbers? Interest rate (percent)? Verbose (TRUE/FALSE)? running total after 1 is 1
+running total after 2 is 3
+running total after 3 is 6
+running total after 4 is 10
+sum = 10
+interest on the sum: 0.5
+tab	separated	and a "quoted" word

@@ -1,0 +1,49 @@
+=== IR before optimization ===
+    s = 2
+    t1 = s
+    i = 1
+    CHECK_STEP t1
+L1:
+    t3 = t1 > 0
+    IF_FALSE t3 GOTO L3
+    t2 = i <= 9
+    GOTO L4
+L3:
+    t2 = i >= 9
+L4:
+    IF_FALSE t2 GOTO L2
+    PRINTN i
+    t4 = i + t1
+    t5 = t4 < i
+    t7 = t1 < 0
+    t6 = t5 != t7
+    IF_TRUE t6 GOTO L2
+    i = t4
+    GOTO L1
+L2:
+
+=== IR after optimization ===
+    i = 1
+L1:
+    t1 = i <= 9
+    IF_FALSE t1 GOTO L2
+    PRINTN i
+    t2 = i + 2
+    t3 = t2 < i
+    t4 = t3 != FALSE
+    IF_TRUE t4 GOTO L2
+    i = t2
+    GOTO L1
+L2:
+
+Optimization summary (2 rounds):
+  constants propagated        : 7
+  expressions folded          : 2
+  algebraic simplifications   : 0
+  branches resolved           : 1
+  copies propagated           : 0
+  unreachable instructions    : 2
+  jumps/labels removed        : 2
+  dead/redundant assignments  : 5
+  temporaries forwarded       : 0
+  instructions                : 22 -> 12

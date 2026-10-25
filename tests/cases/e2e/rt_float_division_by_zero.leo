@@ -1,0 +1,3 @@
+FLOAT d
+INPUT d
+PRINTN 5 / d

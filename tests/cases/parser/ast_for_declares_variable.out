@@ -1,0 +1,12 @@
+Program
+  For INT i
+    From
+      Int 1
+    To
+      Int 3
+    Step
+      Int 1
+    Body
+      Block
+        Print
+          Var i

@@ -1,0 +1,3 @@
+INT i
+FOR i <- 1 TO TRUE DO
+END

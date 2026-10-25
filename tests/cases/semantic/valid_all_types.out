@@ -1,0 +1,24 @@
+Program
+  Decl INT i
+    Int 1 : INT
+  Decl FLOAT f
+    Float 2.5 : FLOAT
+  Decl BOOL b
+    Bool TRUE : BOOL
+  Assign f
+    Var i : INT
+  Assign f
+    Binary + : FLOAT
+      Binary * : FLOAT
+        Var f : FLOAT
+        Var i : INT
+      Int 1 : INT
+  Assign b
+    Binary AND : BOOL
+      Binary < : BOOL
+        Var i : INT
+        Var f : FLOAT
+      Unary NOT : BOOL
+        Var b : BOOL
+  Print
+    Var b : BOOL

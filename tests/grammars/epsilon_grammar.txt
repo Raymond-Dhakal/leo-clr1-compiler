@@ -1,0 +1,5 @@
+# Grammar exercising an EPSILON production and nullability propagation.
+%start S
+S -> A B
+A -> a A | EPSILON
+B -> b

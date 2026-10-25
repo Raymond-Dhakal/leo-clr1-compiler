@@ -1,0 +1,25 @@
+Program
+  Decl INT i
+    Int 3 : INT
+  Decl FLOAT f
+    Var i : INT
+  Assign f
+    Binary + : FLOAT
+      Var i : INT
+      Float 2.5 : FLOAT
+  Print
+    Binary / : INT
+      Int 7 : INT
+      Int 2 : INT
+  Print
+    Binary / : FLOAT
+      Int 7 : INT
+      Float 2.0 : FLOAT
+  Print
+    Binary ^ : INT
+      Int 2 : INT
+      Int 2 : INT
+  Print
+    Binary ^ : FLOAT
+      Int 2 : INT
+      Float 0.5 : FLOAT

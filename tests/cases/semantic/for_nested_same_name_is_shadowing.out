@@ -1,0 +1,3 @@
+ID   NAME             TYPE   SCOPE  DECLARED
+0    i                INT    1      1:9
+1    i                INT    3      2:13

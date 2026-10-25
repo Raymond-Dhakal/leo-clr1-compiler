@@ -1,0 +1,3 @@
+ID   NAME             TYPE   SCOPE  DECLARED
+0    x                INT    0      1:5
+1    x                FLOAT  1      3:11

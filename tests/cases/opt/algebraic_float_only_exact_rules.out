@@ -1,0 +1,34 @@
+=== IR before optimization ===
+    INPUT f
+    t1 = f * 1.0
+    PRINTN t1
+    t2 = f / 1.0
+    PRINTN t2
+    t3 = f ^ 1
+    PRINTN t3
+    t4 = f + 0.0
+    PRINTN t4
+    t5 = f * 0.0
+    PRINTN t5
+
+=== IR after optimization ===
+    INPUT f
+    PRINTN f
+    PRINTN f
+    PRINTN f
+    t1 = f + 0.0
+    PRINTN t1
+    t2 = f * 0.0
+    PRINTN t2
+
+Optimization summary (2 rounds):
+  constants propagated        : 0
+  expressions folded          : 0
+  algebraic simplifications   : 3
+  branches resolved           : 0
+  copies propagated           : 3
+  unreachable instructions    : 0
+  jumps/labels removed        : 0
+  dead/redundant assignments  : 3
+  temporaries forwarded       : 0
+  instructions                : 11 -> 8

@@ -1,0 +1,5 @@
+PRINTN "a\tb"
+PRINTN "say \"hi\""
+PRINTN "back\\slash"
+PRINTN "two\nlines"
+PRINTN "100%", "%d %s"

@@ -1,0 +1,3 @@
+INT e
+INPUT e
+PRINTN 2 ^ e

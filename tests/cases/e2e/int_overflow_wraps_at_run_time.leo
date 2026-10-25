@@ -1,0 +1,5 @@
+INT m
+INPUT m
+PRINTN m + 1
+PRINTN ~m ~ 2
+PRINTN m * 2

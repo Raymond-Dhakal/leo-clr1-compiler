@@ -1,0 +1,4 @@
+WHILE (1 > 2) DO
+    PRINTN 1
+END
+PRINTN 7

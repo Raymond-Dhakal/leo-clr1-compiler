@@ -1,0 +1,13 @@
+Program
+  Decl INT a
+  Decl INT b
+  Assign a
+    Int 1
+  Assign b
+    Binary +
+      Var a
+      Int 2
+  Print
+    Var b
+  Print
+    Var a

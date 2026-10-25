@@ -1,0 +1,10 @@
+Program
+  Decl INT a
+  Decl FLOAT f
+    Float 2.5
+  Decl BOOL ok
+    Bool TRUE
+  Assign a
+    Int 10
+  Assign f
+    Var a

@@ -1,0 +1,11 @@
+LINE:COL KIND       LEXEME
+1:1      ID         abc
+1:5      ID         _x1
+1:9      ID         x_2
+1:13     ID         Count
+1:19     INTLIT     42
+1:22     FLOATLIT   3.14
+1:27     INTLIT     0
+1:29     INTLIT     007
+1:33     FLOATLIT   12.50
+2:1      EOF        <eof>

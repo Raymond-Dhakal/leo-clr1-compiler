@@ -1,0 +1,1 @@
+2:5: semantic error: the condition of IF must be BOOL, but the expression has type INT

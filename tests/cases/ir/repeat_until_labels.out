@@ -1,0 +1,7 @@
+    x = 0
+L1:
+    t1 = x + 1
+    x = t1
+    t2 = x >= 10
+    IF_FALSE t2 GOTO L1
+    PRINTN x

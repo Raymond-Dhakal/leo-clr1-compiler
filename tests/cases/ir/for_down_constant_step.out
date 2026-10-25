@@ -1,0 +1,9 @@
+    i = 3
+L1:
+    t1 = i >= 1
+    IF_FALSE t1 GOTO L2
+    PRINTN i
+    t2 = i + -1
+    i = t2
+    GOTO L1
+L2:

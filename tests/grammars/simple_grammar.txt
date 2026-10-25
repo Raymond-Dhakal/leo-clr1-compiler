@@ -1,0 +1,4 @@
+# A minimal grammar used to sanity-check closure/goto/canonical construction.
+%start S
+S -> A A
+A -> a A | b

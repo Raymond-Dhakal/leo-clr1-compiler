@@ -1,0 +1,7 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main(void) {
+long long v_x = 0;
+nv_input_int(&v_x
+printf("%lld\n"
+return 0;

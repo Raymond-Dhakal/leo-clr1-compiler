@@ -1,0 +1,9 @@
+    f = 0
+L1:
+    t1 = f <= 1
+    IF_FALSE t1 GOTO L2
+    PRINTN f
+    t2 = f + 0.25
+    f = t2
+    GOTO L1
+L2:

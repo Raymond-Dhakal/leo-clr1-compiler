@@ -1,0 +1,2 @@
+BOOL a
+PRINTN a == 1

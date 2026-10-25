@@ -1,0 +1,5 @@
+PRINTN 1 == 1.0
+PRINTN 2 < 2.5
+PRINTN 3 >= 3.5
+PRINTN 7 / 2 == 3
+PRINTN 7 / 2.0 == 3.5

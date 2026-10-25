@@ -1,0 +1,2 @@
+INT
+PRINTN 1

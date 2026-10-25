@@ -1,3 +1,7 @@
+/*
+ * conflict.c
+ * Owner: Member 4 - Raymond Dhakal (24BEL0100)
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include "conflict.h"

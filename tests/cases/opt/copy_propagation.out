@@ -1,0 +1,21 @@
+=== IR before optimization ===
+    INPUT a
+    b = a
+    c = b
+    PRINTN c
+
+=== IR after optimization ===
+    INPUT a
+    PRINTN a
+
+Optimization summary (2 rounds):
+  constants propagated        : 0
+  expressions folded          : 0
+  algebraic simplifications   : 0
+  branches resolved           : 0
+  copies propagated           : 2
+  unreachable instructions    : 0
+  jumps/labels removed        : 0
+  dead/redundant assignments  : 2
+  temporaries forwarded       : 0
+  instructions                : 4 -> 2

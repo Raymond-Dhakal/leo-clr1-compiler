@@ -1,0 +1,4 @@
+BOOL b
+b <- NOT TRUE AND FALSE
+b <- NOT (TRUE AND FALSE)
+b <- NOT NOT b

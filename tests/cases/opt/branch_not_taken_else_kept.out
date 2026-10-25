@@ -1,0 +1,24 @@
+=== IR before optimization ===
+    n = 10
+    t1 = n < 5
+    IF_FALSE t1 GOTO L1
+    PRINTN 1
+    GOTO L2
+L1:
+    PRINTN 2
+L2:
+
+=== IR after optimization ===
+    PRINTN 2
+
+Optimization summary (2 rounds):
+  constants propagated        : 2
+  expressions folded          : 1
+  algebraic simplifications   : 0
+  branches resolved           : 1
+  copies propagated           : 0
+  unreachable instructions    : 2
+  jumps/labels removed        : 3
+  dead/redundant assignments  : 2
+  temporaries forwarded       : 0
+  instructions                : 8 -> 1

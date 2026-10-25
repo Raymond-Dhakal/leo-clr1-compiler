@@ -1,0 +1,1 @@
+semantic error: operator '==' needs two numbers or two BOOLs, but got BOOL and INT

@@ -1,0 +1,9 @@
+BOOL a
+BOOL b
+BOOL c
+INPUT a
+INPUT b
+INPUT c
+PRINTN a AND b OR c
+PRINTN a OR b AND c
+PRINTN NOT (a OR b) OR c

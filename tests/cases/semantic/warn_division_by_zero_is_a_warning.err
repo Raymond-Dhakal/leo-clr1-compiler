@@ -1,0 +1,2 @@
+2:8: warning: division by constant zero will fail at run time
+Semantic analysis          OK

@@ -1,0 +1,2 @@
+INT z
+PRINTN 10 / z

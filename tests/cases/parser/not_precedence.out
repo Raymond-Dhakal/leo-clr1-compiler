@@ -1,0 +1,16 @@
+Program
+  Decl BOOL b
+  Assign b
+    Binary AND
+      Unary NOT
+        Bool TRUE
+      Bool FALSE
+  Assign b
+    Unary NOT
+      Binary AND
+        Bool TRUE
+        Bool FALSE
+  Assign b
+    Unary NOT
+      Unary NOT
+        Var b

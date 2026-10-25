@@ -1,0 +1,16 @@
+Program
+  Decl INT i
+    Int 0
+  While
+    Cond
+      Binary <
+        Var i
+        Int 3
+    Body
+      Block
+        Assign i
+          Binary +
+            Var i
+            Int 1
+        Print
+          Var i

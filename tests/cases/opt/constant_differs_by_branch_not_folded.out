@@ -1,0 +1,33 @@
+=== IR before optimization ===
+    INPUT c
+    t1 = c > 0
+    IF_FALSE t1 GOTO L1
+    x = 1
+    GOTO L2
+L1:
+    x = 2
+L2:
+    PRINTN x
+
+=== IR after optimization ===
+    INPUT c
+    t1 = c > 0
+    IF_FALSE t1 GOTO L1
+    x = 1
+    GOTO L2
+L1:
+    x = 2
+L2:
+    PRINTN x
+
+Optimization summary (1 round):
+  constants propagated        : 0
+  expressions folded          : 0
+  algebraic simplifications   : 0
+  branches resolved           : 0
+  copies propagated           : 0
+  unreachable instructions    : 0
+  jumps/labels removed        : 0
+  dead/redundant assignments  : 0
+  temporaries forwarded       : 0
+  instructions                : 9 -> 9

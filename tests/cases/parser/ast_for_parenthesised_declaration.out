@@ -1,0 +1,8 @@
+Program
+  For FLOAT f
+    From
+      Int 0
+    To
+      Int 1
+    Body
+      Block

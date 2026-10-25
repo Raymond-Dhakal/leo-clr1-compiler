@@ -1,0 +1,3 @@
+BOOL b
+FOR b <- 1 TO 3 DO
+END

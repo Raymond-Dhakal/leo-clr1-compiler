@@ -1,0 +1,7 @@
+FLOAT f
+FOR f <- 0.5 TO 2.0 STEP 0.5 DO
+    PRINTN f
+END
+FOR f <- 1 TO 0 STEP ~0.25 DO
+    PRINTN f
+END

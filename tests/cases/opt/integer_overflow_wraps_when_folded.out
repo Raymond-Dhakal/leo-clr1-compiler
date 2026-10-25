@@ -1,0 +1,22 @@
+=== IR before optimization ===
+    t1 = 9223372036854775807 + 1
+    PRINTN t1
+    t2 = - 9223372036854775807
+    t3 = t2 - 2
+    PRINTN t3
+
+=== IR after optimization ===
+    PRINTN -9223372036854775808
+    PRINTN 9223372036854775807
+
+Optimization summary (2 rounds):
+  constants propagated        : 3
+  expressions folded          : 3
+  algebraic simplifications   : 0
+  branches resolved           : 0
+  copies propagated           : 0
+  unreachable instructions    : 0
+  jumps/labels removed        : 0
+  dead/redundant assignments  : 3
+  temporaries forwarded       : 0
+  instructions                : 5 -> 2

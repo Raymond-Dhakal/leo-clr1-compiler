@@ -1,0 +1,6 @@
+    a = 2
+    WRITE "a ="
+    WRITE a
+    PRINTN "b"
+    PRINTN a
+    PRINTN "end"

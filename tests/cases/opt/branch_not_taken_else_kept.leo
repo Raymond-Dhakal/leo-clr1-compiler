@@ -1,0 +1,6 @@
+INT n <- 10
+IF (n < 5) THEN
+    PRINTN 1
+ELSE
+    PRINTN 2
+END

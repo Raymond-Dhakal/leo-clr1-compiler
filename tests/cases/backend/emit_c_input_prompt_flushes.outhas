@@ -1,0 +1,2 @@
+fputs("x? ", stdout); fflush(stdout);
+nv_input_int(&v_x, "x", 2);

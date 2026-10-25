@@ -1,0 +1,19 @@
+=== IR before optimization ===
+    t1 = 1 + 2
+    x = t1
+    PRINTN x
+
+=== IR after optimization ===
+    PRINTN 3
+
+Optimization summary (2 rounds):
+  constants propagated        : 2
+  expressions folded          : 1
+  algebraic simplifications   : 0
+  branches resolved           : 0
+  copies propagated           : 0
+  unreachable instructions    : 0
+  jumps/labels removed        : 0
+  dead/redundant assignments  : 2
+  temporaries forwarded       : 0
+  instructions                : 3 -> 1

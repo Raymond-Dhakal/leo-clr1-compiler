@@ -1,0 +1,6 @@
+FLOAT a
+FLOAT b
+INPUT a
+INPUT b
+PRINTN a * b
+PRINTN a + 1

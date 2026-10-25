@@ -1,0 +1,2 @@
+INT a
+FLOAT a

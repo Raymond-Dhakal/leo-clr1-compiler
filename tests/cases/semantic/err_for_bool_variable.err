@@ -1,0 +1,1 @@
+semantic error: the FOR loop variable 'b' must be INT or FLOAT, but it is BOOL

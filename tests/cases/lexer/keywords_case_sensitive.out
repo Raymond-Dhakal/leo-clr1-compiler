@@ -1,0 +1,11 @@
+LINE:COL KIND       LEXEME
+1:1      ID         if
+1:4      ID         If
+1:7      ID         IFx
+1:11     ID         INTx
+1:16     ID         int
+1:20     ID         PRINTS
+1:27     ID         print
+1:33     TRUE       TRUE
+1:38     ID         true
+2:1      EOF        <eof>

@@ -1,0 +1,24 @@
+Program
+  Decl BOOL b
+  Assign b
+    Binary OR
+      Var b
+      Binary AND
+        Var b
+        Var b
+  Assign b
+    Binary OR
+      Binary AND
+        Var b
+        Var b
+      Var b
+  Assign b
+    Binary OR
+      Binary OR
+        Var b
+        Var b
+      Binary AND
+        Binary AND
+          Var b
+          Var b
+        Var b

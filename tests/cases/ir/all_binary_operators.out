@@ -1,0 +1,14 @@
+    a = 7
+    b = 2
+    t1 = a + b
+    r = t1
+    t2 = a - b
+    r = t2
+    t3 = a * b
+    r = t3
+    t4 = a / b
+    r = t4
+    t5 = a MOD b
+    r = t5
+    t6 = a ^ b
+    r = t6

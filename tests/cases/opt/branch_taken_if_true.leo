@@ -1,0 +1,5 @@
+IF (3 > 2) THEN
+    PRINTN 1
+ELSE
+    PRINTN 2
+END

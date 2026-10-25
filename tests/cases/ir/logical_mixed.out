@@ -1,0 +1,14 @@
+    t1 = x > 1
+    t2 = t1
+    IF_FALSE t2 GOTO L1
+    t3 = x == 5
+    t4 = NOT t3
+    t2 = t4
+L1:
+    t5 = t2
+    IF_TRUE t5 GOTO L2
+    t6 = - 3
+    t7 = x < t6
+    t5 = t7
+L2:
+    r = t5

@@ -1,0 +1,4 @@
+INT i
+FOR i <- 3 TO 1 STEP ~1 DO
+    PRINTN i
+END

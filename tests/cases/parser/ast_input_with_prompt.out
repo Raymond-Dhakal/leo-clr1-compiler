@@ -1,0 +1,4 @@
+Program
+  Decl INT n
+  Input n prompt "How many? "
+  Input n

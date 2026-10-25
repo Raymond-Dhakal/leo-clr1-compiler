@@ -1,0 +1,7 @@
+    i = 3
+    f = 1.5
+    t1 = i * f
+    r = t1
+    r = i
+    t2 = r + 2
+    PRINTN t2

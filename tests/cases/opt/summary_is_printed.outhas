@@ -1,0 +1,4 @@
+=== IR before optimization ===
+=== IR after optimization ===
+Optimization summary
+instructions                : 3 -> 1

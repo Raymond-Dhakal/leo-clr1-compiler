@@ -1,0 +1,6 @@
+INT a
+FLOAT b
+BOOL c
+IF (TRUE) THEN
+    INT d
+END

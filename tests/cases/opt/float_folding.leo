@@ -1,0 +1,3 @@
+PRINTN 2.5 * 2
+PRINTN 1.0 / 4
+PRINTN 2 ^ 0.5 > 1.4

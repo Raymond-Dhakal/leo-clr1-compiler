@@ -1,0 +1,8 @@
+LINE:COL KIND       LEXEME
+1:1      PRINT      PRINT
+1:7      STRING     "hello world"
+2:1      INPUT      INPUT
+2:7      STRING     "n? "
+2:12     COMMA      ,
+2:14     ID         x
+3:1      EOF        <eof>

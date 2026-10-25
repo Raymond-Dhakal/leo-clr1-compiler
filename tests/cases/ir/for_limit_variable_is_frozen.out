@@ -1,0 +1,13 @@
+    n = 3
+    t1 = n
+    i = 1
+L1:
+    t2 = i <= t1
+    IF_FALSE t2 GOTO L2
+    n = 9
+    t3 = i + 1
+    t4 = t3 < i
+    IF_TRUE t4 GOTO L2
+    i = t3
+    GOTO L1
+L2:

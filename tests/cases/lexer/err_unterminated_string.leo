@@ -1,0 +1,2 @@
+PRINT "oops
+PRINT 1

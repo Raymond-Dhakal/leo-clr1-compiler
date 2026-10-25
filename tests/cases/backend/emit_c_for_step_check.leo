@@ -1,0 +1,4 @@
+INT s
+INPUT s
+FOR INT i <- 1 TO 3 STEP s DO
+END

@@ -1,0 +1,7 @@
+INT x
+INPUT x
+IF (x > 5) THEN
+    PRINTN x
+ELSE
+    PRINTN 0
+END

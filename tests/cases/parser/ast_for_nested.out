@@ -1,0 +1,18 @@
+Program
+  For INT i
+    From
+      Int 1
+    To
+      Int 2
+    Body
+      Block
+        For INT j
+          From
+            Var i
+          To
+            Int 2
+          Body
+            Block
+              Print
+                Var i
+                Var j

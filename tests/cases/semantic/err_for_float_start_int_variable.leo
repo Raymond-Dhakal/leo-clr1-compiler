@@ -1,0 +1,3 @@
+INT i
+FOR i <- 0.5 TO 2 DO
+END

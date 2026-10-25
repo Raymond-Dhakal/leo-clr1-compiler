@@ -1,0 +1,6 @@
+INT x <- 1
+IF (TRUE) THEN
+    FLOAT x <- 2.5
+    PRINTN x
+END
+PRINTN x

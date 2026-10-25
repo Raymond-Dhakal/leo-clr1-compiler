@@ -1,3 +1,12 @@
+/*
+ * lexer.c
+ * Owner: Member 1 - Gurutheja Kavuturi (24BEL0086)
+ *
+ * Tokenizes a whitespace-separated input line (e.g. "id + id * id")
+ * into the terminal symbol ids already registered by grammar.c.
+ * Unknown tokens are reported as errors so parser.c never has to
+ * guess about malformed input.
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

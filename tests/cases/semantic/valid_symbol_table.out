@@ -1,0 +1,5 @@
+ID   NAME             TYPE   SCOPE  DECLARED
+0    a                INT    0      1:5
+1    b                FLOAT  0      2:7
+2    c                BOOL   0      3:6
+3    d                INT    1      5:9

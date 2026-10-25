@@ -1,0 +1,3 @@
+BOOL b
+INPUT b
+PRINTN b

@@ -1,0 +1,19 @@
+=== IR before optimization ===
+    t1 = 10 / z
+    PRINTN t1
+
+=== IR after optimization ===
+    t1 = 10 / 0
+    PRINTN t1
+
+Optimization summary (2 rounds):
+  constants propagated        : 1
+  expressions folded          : 0
+  algebraic simplifications   : 0
+  branches resolved           : 0
+  copies propagated           : 0
+  unreachable instructions    : 0
+  jumps/labels removed        : 0
+  dead/redundant assignments  : 0
+  temporaries forwarded       : 0
+  instructions                : 2 -> 2

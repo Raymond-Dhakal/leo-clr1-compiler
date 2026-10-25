@@ -1,0 +1,4 @@
+Usage: leoc <input.leo>
+--tokens
+--emit-c
+--run

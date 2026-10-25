@@ -1,0 +1,26 @@
+=== IR before optimization ===
+    INPUT c
+    t1 = c > 0
+    IF_FALSE t1 GOTO L1
+    x = 7
+    GOTO L2
+L1:
+    x = 7
+L2:
+    PRINTN x
+
+=== IR after optimization ===
+    INPUT c
+    PRINTN 7
+
+Optimization summary (4 rounds):
+  constants propagated        : 1
+  expressions folded          : 0
+  algebraic simplifications   : 0
+  branches resolved           : 0
+  copies propagated           : 0
+  unreachable instructions    : 0
+  jumps/labels removed        : 4
+  dead/redundant assignments  : 3
+  temporaries forwarded       : 0
+  instructions                : 9 -> 2

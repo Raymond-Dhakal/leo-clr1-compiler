@@ -1,0 +1,13 @@
+INT x
+INPUT x
+PRINTN x + 0
+PRINTN 0 + x
+PRINTN x ~ 0
+PRINTN x * 1
+PRINTN 1 * x
+PRINTN x * 0
+PRINTN x / 1
+PRINTN x ^ 1
+PRINTN x ^ 0
+PRINTN x MOD 1
+PRINTN x ~ x

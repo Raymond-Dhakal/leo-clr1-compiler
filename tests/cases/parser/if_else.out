@@ -1,0 +1,16 @@
+Program
+  Decl INT x
+    Int 1
+  If
+    Cond
+      Binary >
+        Var x
+        Int 0
+    Then
+      Block
+        Print
+          Int 1
+    Else
+      Block
+        Print
+          Int 2

@@ -1,0 +1,21 @@
+Program
+  Decl INT i
+  For i
+    From
+      Int 1 : INT
+    To
+      Int 3 : INT
+    Body
+      Block
+        Print
+          Var i : INT
+  For INT k
+    From
+      Int 1 : INT
+    To
+      Int 2 : INT
+    Body
+      Block
+ID   NAME             TYPE   SCOPE  DECLARED
+0    i                INT    0      1:5
+1    k                INT    1      3:9

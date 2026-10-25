@@ -1,0 +1,3 @@
+BOOL a
+BOOL b
+PRINTN a < b

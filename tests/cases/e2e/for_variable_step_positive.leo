@@ -1,0 +1,10 @@
+INT a
+INT b
+INT s
+INT i
+INPUT a
+INPUT b
+INPUT s
+FOR i <- a TO b STEP s DO
+    PRINTN i
+END

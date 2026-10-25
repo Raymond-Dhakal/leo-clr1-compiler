@@ -1,0 +1,35 @@
+Program
+  Decl INT x
+    Int 1
+  If
+    Cond
+      Binary >
+        Var x
+        Int 0
+    Then
+      Block
+        If
+          Cond
+            Binary >
+              Var x
+              Int 5
+          Then
+            Block
+              Print
+                Int 5
+          Else
+            Block
+              Print
+                Int 1
+    Else
+      Block
+        If
+          Cond
+            Binary <
+              Var x
+              Unary ~
+                Int 5
+          Then
+            Block
+              Print
+                Int 0

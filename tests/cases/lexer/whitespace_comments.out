@@ -1,0 +1,6 @@
+LINE:COL KIND       LEXEME
+2:1      ID         x
+2:3      ASSIGN     <-
+2:8      INTLIT     1
+5:4      ID         y
+6:1      EOF        <eof>

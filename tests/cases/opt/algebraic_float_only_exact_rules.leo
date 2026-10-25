@@ -1,0 +1,7 @@
+FLOAT f
+INPUT f
+PRINTN f * 1.0
+PRINTN f / 1.0
+PRINTN f ^ 1
+PRINTN f + 0.0
+PRINTN f * 0.0

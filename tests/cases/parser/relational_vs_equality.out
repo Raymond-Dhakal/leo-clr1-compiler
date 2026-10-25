@@ -1,0 +1,27 @@
+Program
+  Decl BOOL b
+  Decl INT x
+  Assign b
+    Binary ==
+      Binary <
+        Var x
+        Int 1
+      Binary >
+        Var x
+        Int 2
+  Assign b
+    Binary !=
+      Binary <=
+        Var x
+        Int 1
+      Binary >=
+        Var x
+        Int 2
+  Assign b
+    Binary <
+      Binary +
+        Int 1
+        Int 2
+      Binary *
+        Int 3
+        Int 4

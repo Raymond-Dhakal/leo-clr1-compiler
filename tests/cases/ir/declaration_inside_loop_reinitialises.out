@@ -1,0 +1,11 @@
+    i = 0
+L1:
+    t1 = i < 2
+    IF_FALSE t1 GOTO L2
+    acc = 0
+    f = 0.0
+    b = FALSE
+    t2 = i + 1
+    i = t2
+    GOTO L1
+L2:

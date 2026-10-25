@@ -1,0 +1,3 @@
+INT x
+IF x > 1 THEN
+END

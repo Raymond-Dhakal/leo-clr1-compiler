@@ -1,0 +1,4 @@
+LINE:COL KIND       LEXEME
+1:1      PRINT      PRINT
+1:7      STRING     "a\tb\n\"q\"\\"
+2:1      EOF        <eof>

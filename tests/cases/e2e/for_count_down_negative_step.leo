@@ -1,0 +1,4 @@
+FOR (INT i <- 10 TO 1 STEP ~3)
+DO
+    PRINTN i
+END

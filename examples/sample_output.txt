@@ -1,0 +1,306 @@
+=== Grammar ===
+Start symbol: E
+Augmented start: E'
+Terminals: + * ( ) id 
+Non-terminals: E T F E' 
+Productions:
+  [0] E -> E + T
+  [1] E -> T
+  [2] T -> T * F
+  [3] T -> F
+  [4] F -> ( E )
+  [5] F -> id
+  [6] E' -> E
+
+=== FIRST sets ===
+FIRST(E) = { ( id }
+FIRST(T) = { ( id }
+FIRST(F) = { ( id }
+FIRST(E') = { ( id }
+
+=== Canonical LR(1) Collection (22 states) ===
+State I0:
+  [E' -> . E, $]
+  [E -> . E + T, $]
+  [E -> . T, $]
+  [E -> . E + T, +]
+  [E -> . T, +]
+  [T -> . T * F, $]
+  [T -> . F, $]
+  [T -> . T * F, +]
+  [T -> . F, +]
+  [T -> . T * F, *]
+  [T -> . F, *]
+  [F -> . ( E ), $]
+  [F -> . id, $]
+  [F -> . ( E ), +]
+  [F -> . id, +]
+  [F -> . ( E ), *]
+  [F -> . id, *]
+  on E -> I1
+  on T -> I2
+  on F -> I3
+  on ( -> I4
+  on id -> I5
+
+State I1:
+  [E' -> E ., $]
+  [E -> E . + T, $]
+  [E -> E . + T, +]
+  on + -> I6
+
+State I2:
+  [E -> T ., $]
+  [E -> T ., +]
+  [T -> T . * F, $]
+  [T -> T . * F, +]
+  [T -> T . * F, *]
+  on * -> I7
+
+State I3:
+  [T -> F ., $]
+  [T -> F ., +]
+  [T -> F ., *]
+
+State I4:
+  [F -> ( . E ), $]
+  [F -> ( . E ), +]
+  [F -> ( . E ), *]
+  [E -> . E + T, )]
+  [E -> . T, )]
+  [E -> . E + T, +]
+  [E -> . T, +]
+  [T -> . T * F, )]
+  [T -> . F, )]
+  [T -> . T * F, +]
+  [T -> . F, +]
+  [T -> . T * F, *]
+  [T -> . F, *]
+  [F -> . ( E ), )]
+  [F -> . id, )]
+  [F -> . ( E ), +]
+  [F -> . id, +]
+  [F -> . ( E ), *]
+  [F -> . id, *]
+  on E -> I8
+  on T -> I9
+  on F -> I10
+  on ( -> I11
+  on id -> I12
+
+State I5:
+  [F -> id ., $]
+  [F -> id ., +]
+  [F -> id ., *]
+
+State I6:
+  [E -> E + . T, $]
+  [E -> E + . T, +]
+  [T -> . T * F, $]
+  [T -> . F, $]
+  [T -> . T * F, +]
+  [T -> . F, +]
+  [T -> . T * F, *]
+  [T -> . F, *]
+  [F -> . ( E ), $]
+  [F -> . id, $]
+  [F -> . ( E ), +]
+  [F -> . id, +]
+  [F -> . ( E ), *]
+  [F -> . id, *]
+  on T -> I13
+  on F -> I3
+  on ( -> I4
+  on id -> I5
+
+State I7:
+  [T -> T * . F, $]
+  [T -> T * . F, +]
+  [T -> T * . F, *]
+  [F -> . ( E ), $]
+  [F -> . id, $]
+  [F -> . ( E ), +]
+  [F -> . id, +]
+  [F -> . ( E ), *]
+  [F -> . id, *]
+  on F -> I14
+  on ( -> I4
+  on id -> I5
+
+State I8:
+  [F -> ( E . ), $]
+  [F -> ( E . ), +]
+  [F -> ( E . ), *]
+  [E -> E . + T, )]
+  [E -> E . + T, +]
+  on ) -> I15
+  on + -> I16
+
+State I9:
+  [E -> T ., )]
+  [E -> T ., +]
+  [T -> T . * F, )]
+  [T -> T . * F, +]
+  [T -> T . * F, *]
+  on * -> I17
+
+State I10:
+  [T -> F ., )]
+  [T -> F ., +]
+  [T -> F ., *]
+
+State I11:
+  [F -> ( . E ), )]
+  [F -> ( . E ), +]
+  [F -> ( . E ), *]
+  [E -> . E + T, )]
+  [E -> . T, )]
+  [E -> . E + T, +]
+  [E -> . T, +]
+  [T -> . T * F, )]
+  [T -> . F, )]
+  [T -> . T * F, +]
+  [T -> . F, +]
+  [T -> . T * F, *]
+  [T -> . F, *]
+  [F -> . ( E ), )]
+  [F -> . id, )]
+  [F -> . ( E ), +]
+  [F -> . id, +]
+  [F -> . ( E ), *]
+  [F -> . id, *]
+  on E -> I18
+  on T -> I9
+  on F -> I10
+  on ( -> I11
+  on id -> I12
+
+State I12:
+  [F -> id ., )]
+  [F -> id ., +]
+  [F -> id ., *]
+
+State I13:
+  [E -> E + T ., $]
+  [E -> E + T ., +]
+  [T -> T . * F, $]
+  [T -> T . * F, +]
+  [T -> T . * F, *]
+  on * -> I7
+
+State I14:
+  [T -> T * F ., $]
+  [T -> T * F ., +]
+  [T -> T * F ., *]
+
+State I15:
+  [F -> ( E ) ., $]
+  [F -> ( E ) ., +]
+  [F -> ( E ) ., *]
+
+State I16:
+  [E -> E + . T, )]
+  [E -> E + . T, +]
+  [T -> . T * F, )]
+  [T -> . F, )]
+  [T -> . T * F, +]
+  [T -> . F, +]
+  [T -> . T * F, *]
+  [T -> . F, *]
+  [F -> . ( E ), )]
+  [F -> . id, )]
+  [F -> . ( E ), +]
+  [F -> . id, +]
+  [F -> . ( E ), *]
+  [F -> . id, *]
+  on T -> I19
+  on F -> I10
+  on ( -> I11
+  on id -> I12
+
+State I17:
+  [T -> T * . F, )]
+  [T -> T * . F, +]
+  [T -> T * . F, *]
+  [F -> . ( E ), )]
+  [F -> . id, )]
+  [F -> . ( E ), +]
+  [F -> . id, +]
+  [F -> . ( E ), *]
+  [F -> . id, *]
+  on F -> I20
+  on ( -> I11
+  on id -> I12
+
+State I18:
+  [F -> ( E . ), )]
+  [F -> ( E . ), +]
+  [F -> ( E . ), *]
+  [E -> E . + T, )]
+  [E -> E . + T, +]
+  on ) -> I21
+  on + -> I16
+
+State I19:
+  [E -> E + T ., )]
+  [E -> E + T ., +]
+  [T -> T . * F, )]
+  [T -> T . * F, +]
+  [T -> T . * F, *]
+  on * -> I17
+
+State I20:
+  [T -> T * F ., )]
+  [T -> T * F ., +]
+  [T -> T * F ., *]
+
+State I21:
+  [F -> ( E ) ., )]
+  [F -> ( E ) ., +]
+  [F -> ( E ) ., *]
+
+=== ACTION / GOTO Table ===
+State $     +     *     (     )     id    E     T     F     
+0                    s4        s5   1     2     3     
+1     acc  s6                                         
+2     r1   r1   s7                                    
+3     r3   r3   r3                                    
+4                    s11       s12  8     9     10    
+5     r5   r5   r5                                    
+6                    s4        s5         13    3     
+7                    s4        s5               14    
+8          s16            s15                         
+9          r1   s17       r1                          
+10         r3   r3        r3                          
+11                   s11       s12  18    9     10    
+12         r5   r5        r5                          
+13    r0   r0   s7                                    
+14    r2   r2   r2                                    
+15    r4   r4   r4                                    
+16                   s11       s12        19    10    
+17                   s11       s12              20    
+18         s16            s21                         
+19         r0   s17       r0                          
+20         r2   r2        r2                          
+21         r4   r4        r4                          
+
+=== Conflicts ===
+None. Grammar is Canonical-LR(1).
+
+=== Parsing input: "id + id * id" ===
+STATE STACK                    SYMBOL STACK                   INPUT                ACTION
+0                                                             id + id * id $       shift to I5
+0 5                            id                             + id * id $          reduce by F -> id
+0 3                            F                              + id * id $          reduce by T -> F
+0 2                            T                              + id * id $          reduce by E -> T
+0 1                            E                              + id * id $          shift to I6
+0 1 6                          E +                            id * id $            shift to I5
+0 1 6 5                        E + id                         * id $               reduce by F -> id
+0 1 6 3                        E + F                          * id $               reduce by T -> F
+0 1 6 13                       E + T                          * id $               shift to I7
+0 1 6 13 7                     E + T *                        id $                 shift to I5
+0 1 6 13 7 5                   E + T * id                     $                    reduce by F -> id
+0 1 6 13 7 14                  E + T * F                      $                    reduce by T -> T * F
+0 1 6 13                       E + T                          $                    reduce by E -> E + T
+0 1                            E                              $                    accept
+Result: ACCEPTED

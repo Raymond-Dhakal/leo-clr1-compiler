@@ -1,0 +1,16 @@
+LINE:COL KIND       LEXEME
+1:1      FOR        FOR
+1:5      ID         i
+1:7      ASSIGN     <-
+1:10     INTLIT     1
+1:12     TO         TO
+1:15     INTLIT     10
+1:18     STEP       STEP
+1:23     INTLIT     2
+1:25     DO         DO
+2:1      END        END
+3:1      PRINT      PRINT
+3:7      ID         a
+3:8      COMMA      ,
+3:10     ID         b
+4:1      EOF        <eof>

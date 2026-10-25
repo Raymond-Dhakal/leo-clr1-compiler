@@ -1,0 +1,2 @@
+INT a
+a <- TRUE

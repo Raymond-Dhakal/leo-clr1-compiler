@@ -1,0 +1,2 @@
+FOR (FLOAT f <- 0 TO 1) DO
+END

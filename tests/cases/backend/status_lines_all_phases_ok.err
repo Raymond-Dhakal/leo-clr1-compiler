@@ -1,0 +1,7 @@
+[1/6] Lexical analysis           OK
+[2/6] Syntax analysis (CLR(1))   OK
+[3/6] Semantic analysis          OK
+[4/6] Intermediate code          OK
+[5/6] Optimization               OK
+[6/6] C code generation          OK
+gcc                        OK

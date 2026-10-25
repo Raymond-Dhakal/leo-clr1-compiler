@@ -1,0 +1,1 @@
+semantic error: unary '~' (negation) requires a numeric operand, but got BOOL

@@ -1,0 +1,1 @@
+2:7: semantic error: variable 'a' is already declared in this scope (first declared at 1:5)

@@ -1,0 +1,14 @@
+Program
+  Decl INT i
+    Int 0
+  Repeat
+    Body
+      Block
+        Assign i
+          Binary +
+            Var i
+            Int 1
+    Until
+      Binary >=
+        Var i
+        Int 3

@@ -1,0 +1,12 @@
+Program
+  Decl INT r
+  Assign r
+    Binary ~
+      Binary +
+        Int 1
+        Binary *
+          Int 2
+          Int 3
+      Binary /
+        Int 4
+        Int 2

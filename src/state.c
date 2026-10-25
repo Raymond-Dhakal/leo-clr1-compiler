@@ -1,3 +1,7 @@
+/*
+ * state.c
+ * Owner: Member 4 - Raymond Dhakal (24BEL0100)
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include "state.h"
@@ -22,7 +26,7 @@ void state_destroy(State *state) {
 }
 
 void state_add_transition(State *state, int symbol, int target) {
-    if (state_find_transition(state, symbol) != -1) return;
+    if (state_find_transition(state, symbol) != -1) return; /* already recorded */
     if (state->transition_count >= state->transition_capacity) {
         state->transition_capacity *= 2;
         state->transitions = (Transition *)realloc(state->transitions,

@@ -1,3 +1,12 @@
+/*
+ * canonical.c
+ * Owner: Member 4 - Raymond Dhakal (24BEL0100)
+ *
+ * Builds the canonical collection C = {I0, I1, ...} via BFS-style
+ * worklist over states, computing GOTO(I, X) for every grammar symbol
+ * X and every already-discovered state I, merging into an existing
+ * state when the resulting item set already exists.
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include "canonical.h"
@@ -34,6 +43,7 @@ CanonicalCollection *canonical_build(Grammar *g, const FirstSetsTable *first) {
         return c;
     }
 
+    /* I0 = CLOSURE({ [S' -> . S, $] }) */
     ItemSet *seed = itemset_create();
     LR1Item start_item = lr1_item_create(g->augmented_production, 0, g->end_symbol);
     itemset_add_item(seed, start_item);
@@ -43,9 +53,15 @@ CanonicalCollection *canonical_build(Grammar *g, const FirstSetsTable *first) {
     State *s0 = state_create(0, I0);
     canonical_add_state(c, s0);
 
+    /* Worklist: process states in the order they were added; new states
+       discovered mid-loop are appended to c->states and will be
+       reached later in this same for-loop because we re-check c->count
+       on every iteration. */
     for (int i = 0; i < c->count; i++) {
         State *current = c->states[i];
 
+        /* Collect the distinct symbols appearing right after a dot in
+           this state's item set (candidate transition symbols). */
         int seen_symbols[512];
         int seen_count = 0;
 
@@ -53,14 +69,8 @@ CanonicalCollection *canonical_build(Grammar *g, const FirstSetsTable *first) {
             int sym = lr1_item_dot_symbol(g, &current->items->items[k]);
             if (sym == -1) continue;
             int already = 0;
-            for (int j = 0; j < seen_count; j++) {
-                if (seen_symbols[j] == sym) {
-                    already = 1;
-                    break;
-                }
-            }
-            if (!already && seen_count < 512)
-                seen_symbols[seen_count++] = sym;
+            for (int j = 0; j < seen_count; j++) if (seen_symbols[j] == sym) { already = 1; break; }
+            if (!already && seen_count < 512) seen_symbols[seen_count++] = sym;
         }
 
         for (int j = 0; j < seen_count; j++) {
@@ -98,4 +108,3 @@ void canonical_print(const CanonicalCollection *c) {
         printf("\n");
     }
 }
-

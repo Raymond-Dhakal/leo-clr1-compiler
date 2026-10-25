@@ -1,0 +1,2 @@
+PRINTN 1
+PRINTN 1 / 0

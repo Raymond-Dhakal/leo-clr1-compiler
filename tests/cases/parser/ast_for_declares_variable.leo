@@ -1,0 +1,3 @@
+FOR INT i <- 1 TO 3 STEP 1 DO
+    PRINTN i
+END

@@ -1,0 +1,3 @@
+INT d
+INPUT d
+PRINTN 5 MOD d

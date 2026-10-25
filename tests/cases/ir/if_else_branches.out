@@ -1,0 +1,8 @@
+    INPUT x
+    t1 = x > 5
+    IF_FALSE t1 GOTO L1
+    PRINTN x
+    GOTO L2
+L1:
+    PRINTN 0
+L2:

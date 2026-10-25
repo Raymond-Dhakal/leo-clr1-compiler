@@ -1,0 +1,6 @@
+INT i
+FLOAT f
+BOOL b
+PRINTN i
+PRINTN f
+PRINTN b

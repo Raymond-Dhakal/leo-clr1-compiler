@@ -1,0 +1,1 @@
+fputs("100% ?\077/ \"q\" \\", stdout); putchar('\n');

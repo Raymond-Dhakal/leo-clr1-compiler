@@ -1,0 +1,2 @@
+INT i
+PRINTN NOT i

@@ -1,0 +1,9 @@
+# Edge cases:
+# - empty input against a grammar where the start symbol IS nullable
+#   should ACCEPT (see epsilon_grammar's A -> EPSILON path is not
+#   itself the whole start symbol here, so empty input should REJECT
+#   for S -> A B since B -> b is mandatory).
+# - single-token input
+# - deeply nested parentheses
+(((( id ))))
+id

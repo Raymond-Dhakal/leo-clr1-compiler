@@ -1,0 +1,25 @@
+    INPUT a
+    INPUT b
+    INPUT s
+    t1 = b
+    t2 = s
+    i = a
+    CHECK_STEP t2
+L1:
+    t4 = t2 > 0
+    IF_FALSE t4 GOTO L3
+    t3 = i <= t1
+    GOTO L4
+L3:
+    t3 = i >= t1
+L4:
+    IF_FALSE t3 GOTO L2
+    PRINTN i
+    t5 = i + t2
+    t6 = t5 < i
+    t8 = t2 < 0
+    t7 = t6 != t8
+    IF_TRUE t7 GOTO L2
+    i = t5
+    GOTO L1
+L2:

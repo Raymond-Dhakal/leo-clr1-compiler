@@ -1,0 +1,5 @@
+    t1 = a
+    IF_FALSE t1 GOTO L1
+    t1 = b
+L1:
+    r = t1

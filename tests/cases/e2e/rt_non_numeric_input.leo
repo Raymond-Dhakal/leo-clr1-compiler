@@ -1,0 +1,3 @@
+INT x
+INPUT x
+PRINTN x

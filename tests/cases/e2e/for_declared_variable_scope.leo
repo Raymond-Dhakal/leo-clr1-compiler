@@ -1,0 +1,5 @@
+INT i <- 100
+FOR INT i <- 1 TO 2 DO
+    PRINTN i
+END
+PRINTN i

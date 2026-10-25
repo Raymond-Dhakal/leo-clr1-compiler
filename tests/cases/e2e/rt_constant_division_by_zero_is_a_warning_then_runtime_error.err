@@ -1,0 +1,2 @@
+warning: division by constant zero will fail at run time
+runtime error (line 2): integer division by zero

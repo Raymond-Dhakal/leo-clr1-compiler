@@ -1,0 +1,23 @@
+Program
+  If
+    Cond
+      Bool TRUE
+    Then
+      Block
+  While
+    Cond
+      Bool FALSE
+    Body
+      Block
+  Repeat
+    Body
+      Block
+    Until
+      Bool TRUE
+  If
+    Cond
+      Bool TRUE
+    Then
+      Block
+    Else
+      Block

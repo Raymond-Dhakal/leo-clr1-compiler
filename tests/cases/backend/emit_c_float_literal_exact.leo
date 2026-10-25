@@ -1,0 +1,3 @@
+FLOAT f
+INPUT f
+PRINTN f + 0.1

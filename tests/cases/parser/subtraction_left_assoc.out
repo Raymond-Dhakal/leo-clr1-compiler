@@ -1,0 +1,8 @@
+Program
+  Decl INT r
+  Assign r
+    Binary ~
+      Binary ~
+        Int 10
+        Int 4
+      Int 3

@@ -1,0 +1,59 @@
+# Leo language grammar, consumed by the CLR(1) parser generator.
+#
+# Conventions (see README.md, "Grammar input format"):
+#   * every symbol is a whitespace separated word
+#   * a symbol that is never a left-hand side is a terminal
+#   * terminals are the token kinds produced by the Leo lexer:
+#       id intlit floatlit strlit TRUE FALSE and the keywords / operators below
+#
+# Operator precedence and associativity are encoded structurally by the
+# stratified expression rules (lowest precedence first):
+#   OR  <  AND  <  == !=  <  < > <= >=  <  + ~  <  * / MOD  <  ^  <  NOT ~(unary)
+# All binary operators are left associative except ^ (right associative).
+%start Program
+
+Program   -> StmtList
+
+StmtList  -> StmtList Stmt | EPSILON
+
+Stmt      -> Type id
+Stmt      -> Type id <- Expr
+Stmt      -> id <- Expr
+Stmt      -> IF ( Expr ) THEN StmtList END
+Stmt      -> IF ( Expr ) THEN StmtList ELSE StmtList END
+Stmt      -> WHILE ( Expr ) DO StmtList END
+Stmt      -> REPEAT StmtList UNTIL ( Expr )
+Stmt      -> FOR ForHead DO StmtList END
+Stmt      -> INPUT id
+Stmt      -> INPUT strlit , id
+Stmt      -> PRINT PrintList
+Stmt      -> PRINTN PrintList
+Stmt      -> PRINTN_EMPTY
+
+# FOR i <- 1 TO 10 [STEP 2]   or   FOR (i <- 10 TO 1 STEP ~1)   ; the loop variable
+# may be declared in the header:   FOR INT i <- 1 TO 10
+ForHead   -> ( ForSpec )
+ForHead   -> ForSpec
+ForSpec   -> ForVar <- Expr TO Expr
+ForSpec   -> ForVar <- Expr TO Expr STEP Expr
+ForVar    -> id
+ForVar    -> Type id
+
+# PRINT "label", expr, "more", expr ...   (space-separated; PRINTN ends the line)
+PrintList -> PrintItem
+PrintList -> PrintList , PrintItem
+PrintItem -> Expr
+PrintItem -> strlit
+
+Type      -> INT | FLOAT | BOOL
+
+Expr      -> OrExpr
+OrExpr    -> OrExpr OR AndExpr | AndExpr
+AndExpr   -> AndExpr AND EqExpr | EqExpr
+EqExpr    -> EqExpr == RelExpr | EqExpr != RelExpr | RelExpr
+RelExpr   -> RelExpr < AddExpr | RelExpr > AddExpr | RelExpr <= AddExpr | RelExpr >= AddExpr | AddExpr
+AddExpr   -> AddExpr + MulExpr | AddExpr ~ MulExpr | MulExpr
+MulExpr   -> MulExpr * PowExpr | MulExpr / PowExpr | MulExpr MOD PowExpr | PowExpr
+PowExpr   -> Unary ^ PowExpr | Unary
+Unary     -> NOT Unary | ~ Unary | Primary
+Primary   -> ( Expr ) | id | intlit | floatlit | TRUE | FALSE

@@ -1,0 +1,13 @@
+Program
+  Decl INT a
+  Print
+    Str "a is"
+    Var a
+    Str "and twice"
+    Binary *
+      Var a
+      Int 2
+  Print
+    Str "just text"
+  Print
+    Var a

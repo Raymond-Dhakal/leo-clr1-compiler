@@ -1,0 +1,7 @@
+INT x
+INPUT x
+IF (x != 0 AND 10 / x > 1) THEN
+    PRINTN 1
+ELSE
+    PRINTN 2
+END

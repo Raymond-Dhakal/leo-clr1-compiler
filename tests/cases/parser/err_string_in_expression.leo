@@ -1,0 +1,2 @@
+INT x
+x <- "text"

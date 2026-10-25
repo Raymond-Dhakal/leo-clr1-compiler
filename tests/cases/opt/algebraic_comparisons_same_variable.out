@@ -1,0 +1,29 @@
+=== IR before optimization ===
+    INPUT x
+    t1 = x == x
+    PRINTN t1
+    t2 = x != x
+    PRINTN t2
+    t3 = x < x
+    PRINTN t3
+    t4 = x <= x
+    PRINTN t4
+
+=== IR after optimization ===
+    INPUT x
+    PRINTN TRUE
+    PRINTN FALSE
+    PRINTN FALSE
+    PRINTN TRUE
+
+Optimization summary (3 rounds):
+  constants propagated        : 4
+  expressions folded          : 0
+  algebraic simplifications   : 4
+  branches resolved           : 0
+  copies propagated           : 0
+  unreachable instructions    : 0
+  jumps/labels removed        : 0
+  dead/redundant assignments  : 4
+  temporaries forwarded       : 0
+  instructions                : 9 -> 5

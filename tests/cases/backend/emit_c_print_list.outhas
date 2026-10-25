@@ -1,0 +1,2 @@
+fputs("a =", stdout); putchar(' ');
+printf("%lld ", v_a);

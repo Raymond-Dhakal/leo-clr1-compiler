@@ -1,0 +1,5 @@
+lexical error: invalid character '@'
+2:6: lexical error: invalid character '$'
+3:6: lexical error: invalid character '?'
+[1/6] Lexical analysis
+FAILED  3 errors

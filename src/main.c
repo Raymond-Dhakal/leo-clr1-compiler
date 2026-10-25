@@ -1,3 +1,17 @@
+/*
+ * main.c
+ * Integration point (Member 4 owns the integration layer).
+ *
+ * Coordinates the full pipeline. Deliberately thin: every algorithm
+ * lives in its own module, main.c just calls them in order.
+ *
+ * Usage:
+ *   clr_parser <grammar_file> [input_string]
+ *
+ * If input_string is omitted, the tool still builds and prints the
+ * grammar, FIRST sets, canonical collection, parsing table, and any
+ * conflicts, then exits (useful for Review-1 screenshots).
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -31,6 +45,7 @@ int main(int argc, char **argv) {
         else input_string = argv[i];
     }
 
+    /* 1. Load grammar (Member 1) */
     Grammar *g = grammar_create();
     if (grammar_load_from_file(g, grammar_file) != 0) {
         fprintf(stderr, "Failed to load grammar from '%s'\n", grammar_file);
@@ -41,13 +56,16 @@ int main(int argc, char **argv) {
     grammar_print(g);
     printf("\n");
 
+    /* 2. FIRST sets / lookahead foundation (Member 2) */
     FirstSetsTable *first = first_sets_compute(g);
     first_sets_print(g, first);
     printf("\n");
 
+    /* 3. Canonical LR(1) collection via CLOSURE + GOTO (Member 3 + 4) */
     CanonicalCollection *cc = canonical_build(g, first);
     canonical_print(cc);
 
+    /* 4. Parsing table + conflict analysis (Member 4) */
     ConflictList *conflicts = conflict_list_create();
     ParsingTable *pt = parsing_table_build(g, cc, conflicts);
     parsing_table_print(pt);
@@ -55,6 +73,7 @@ int main(int argc, char **argv) {
     conflict_list_print(g, conflicts);
     printf("\n");
 
+    /* 5. Parse an input string, if one was given */
     if (input_string) {
         printf("=== Parsing input: \"%s\" ===\n", input_string);
         TokenStream *ts = lexer_tokenize(g, input_string);
@@ -69,6 +88,7 @@ int main(int argc, char **argv) {
         printf("(No input string given; skipping parse step. Pass one as the 2nd argument.)\n");
     }
 
+    /* Cleanup */
     conflict_list_destroy(conflicts);
     parsing_table_destroy(pt);
     canonical_destroy(cc);

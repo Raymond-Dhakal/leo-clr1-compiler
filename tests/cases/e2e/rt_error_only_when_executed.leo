@@ -1,0 +1,7 @@
+INT d
+INPUT d
+IF (d != 0) THEN
+    PRINTN 10 / d
+ELSE
+    PRINTN 0
+END

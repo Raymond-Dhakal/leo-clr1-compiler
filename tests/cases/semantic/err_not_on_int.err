@@ -1,0 +1,1 @@
+semantic error: operator 'NOT' requires a BOOL operand, but got INT

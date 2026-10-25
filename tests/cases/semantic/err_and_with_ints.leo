@@ -1,0 +1,2 @@
+INT i
+PRINTN i AND 1

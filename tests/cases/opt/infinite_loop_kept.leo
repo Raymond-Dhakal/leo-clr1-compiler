@@ -1,0 +1,3 @@
+WHILE (TRUE) DO
+    PRINTN 1
+END

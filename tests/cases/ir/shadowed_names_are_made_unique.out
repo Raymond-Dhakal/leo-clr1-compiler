@@ -1,0 +1,6 @@
+    x = 1
+    IF_FALSE TRUE GOTO L1
+    x_2 = 2
+    PRINTN x_2
+L1:
+    PRINTN x

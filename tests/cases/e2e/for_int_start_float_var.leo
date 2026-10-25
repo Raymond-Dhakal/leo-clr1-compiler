@@ -1,0 +1,2 @@
+FLOAT f
+FOR f <- 1 TO 3 DO PRINTN f / 2 END

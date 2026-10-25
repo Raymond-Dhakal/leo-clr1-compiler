@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ask Leo · Leo Playground</title>
+<meta name="description" content="Ask questions about Leo's compiler, language, and source code.">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="ask.css?v=leo1">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><a class="logo" href="/" aria-label="Leo Playground">L</a><div><h1>Ask Leo</h1><p>Questions answered from this project's docs and source</p></div></div>
+  <div class="controls"><a class="nav-link" href="/">Open Playground</a></div>
+</header>
+<main class="ask-shell">
+  <section class="ask-intro">
+    <h2>How can I help with Leo?</h2>
+    <p>Ask about the language, compiler phases, or how a part of the code works. Answers include the project files they used.</p>
+  </section>
+  <div id="conversation" class="conversation" aria-live="polite">
+    <div id="welcome" class="welcome">Try asking: <button type="button" class="suggestion">How does the parser build its LR(1) states?</button><button type="button" class="suggestion">Where is PRINTN handled?</button></div>
+  </div>
+  <form id="ask-form" class="ask-form">
+    <label class="sr-only" for="question">Question about Leo</label>
+    <textarea id="question" maxlength="2000" rows="3" placeholder="Ask a question about this project…" required></textarea>
+    <div class="ask-actions"><span id="ask-status" role="status">Grounded in project files · Groq</span><button id="ask-submit" class="primary" type="submit">Ask</button></div>
+  </form>
+</main>
+<script type="module" src="ask.js?v=leo1"></script>
+</body>
+</html>

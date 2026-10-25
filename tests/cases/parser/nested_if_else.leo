@@ -1,0 +1,6 @@
+INT x <- 1
+IF (x > 0) THEN
+    IF (x > 5) THEN PRINT 5 ELSE PRINT 1 END
+ELSE
+    IF (x < ~5) THEN PRINT 0 END
+END

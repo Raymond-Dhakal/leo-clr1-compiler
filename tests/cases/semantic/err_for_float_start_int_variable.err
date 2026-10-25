@@ -1,0 +1,1 @@
+semantic error: the FOR start value is FLOAT but loop variable 'i' is INT

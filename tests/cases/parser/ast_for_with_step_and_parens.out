@@ -1,0 +1,14 @@
+Program
+  Decl INT i
+  For i
+    From
+      Int 10
+    To
+      Int 1
+    Step
+      Unary ~
+        Int 2
+    Body
+      Block
+        Print
+          Var i

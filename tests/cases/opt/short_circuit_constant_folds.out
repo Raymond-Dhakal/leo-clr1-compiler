@@ -1,0 +1,37 @@
+=== IR before optimization ===
+    t1 = TRUE
+    IF_FALSE t1 GOTO L1
+    t1 = FALSE
+L1:
+    PRINTN t1
+    t2 = FALSE
+    IF_FALSE t2 GOTO L2
+    t3 = 1 / 0
+    t4 = t3 > 1
+    t2 = t4
+L2:
+    PRINTN t2
+    t5 = TRUE
+    IF_TRUE t5 GOTO L3
+    t6 = 1 / 0
+    t7 = t6 > 1
+    t5 = t7
+L3:
+    PRINTN t5
+
+=== IR after optimization ===
+    PRINTN FALSE
+    PRINTN FALSE
+    PRINTN TRUE
+
+Optimization summary (3 rounds):
+  constants propagated        : 6
+  expressions folded          : 0
+  algebraic simplifications   : 0
+  branches resolved           : 3
+  copies propagated           : 0
+  unreachable instructions    : 6
+  jumps/labels removed        : 5
+  dead/redundant assignments  : 4
+  temporaries forwarded       : 0
+  instructions                : 19 -> 3

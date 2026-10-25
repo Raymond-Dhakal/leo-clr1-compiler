@@ -1,0 +1,3 @@
+INT i
+IF (i) THEN
+END

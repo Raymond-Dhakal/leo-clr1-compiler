@@ -1,0 +1,15 @@
+Program
+  Decl INT x
+  Decl BOOL b
+  Assign b
+    Binary OR
+      Binary AND
+        Binary >
+          Var x
+          Int 1
+        Binary <
+          Var x
+          Int 10
+      Binary ==
+        Var x
+        Int 20

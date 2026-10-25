@@ -1,0 +1,3 @@
+INT i
+WHILE (i + 1) DO
+END

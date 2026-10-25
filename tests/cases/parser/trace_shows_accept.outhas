@@ -1,0 +1,3 @@
+reduce by AddExpr -> AddExpr + MulExpr
+accept
+shift to I

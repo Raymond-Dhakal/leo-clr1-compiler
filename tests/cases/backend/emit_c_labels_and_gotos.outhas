@@ -1,0 +1,4 @@
+L1:;
+goto L1;
+if (!
+) goto L2;

@@ -1,0 +1,1 @@
+1:5: semantic error: FOR loop variable 'i' is not declared (declare it first or write FOR INT i <- ...)

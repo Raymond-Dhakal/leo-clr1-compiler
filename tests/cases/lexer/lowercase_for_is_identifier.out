@@ -1,0 +1,8 @@
+LINE:COL KIND       LEXEME
+1:1      INT        INT
+1:5      ID         for
+2:1      INT        INT
+2:5      ID         to
+3:1      INT        INT
+3:5      ID         step
+4:1      EOF        <eof>

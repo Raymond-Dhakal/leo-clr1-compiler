@@ -1,0 +1,3 @@
+REPEAT
+    PRINTN 1
+END

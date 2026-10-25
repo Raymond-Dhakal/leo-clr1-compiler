@@ -1,0 +1,3 @@
+INT a
+INPUT a
+PRINTN a ~ 1

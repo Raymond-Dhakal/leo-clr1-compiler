@@ -1,3 +1,18 @@
+/*
+ * parsing_table.c
+ * Owner: Member 4 - Raymond Dhakal (24BEL0100)
+ *
+ * For every state Ii and every item in it:
+ *   [A -> alpha . a beta, b]  (a terminal)  => ACTION[i,a] = shift GOTO(Ii,a)
+ *   [A -> alpha ., a]         (A != S')     => ACTION[i,a] = reduce A -> alpha
+ *   [S' -> S ., $]                          => ACTION[i,$] = accept
+ * GOTO[i, A] for non-terminal A is copied directly from the state's
+ * recorded transition on A.
+ *
+ * Conflicts are recorded (via conflict.c) and the FIRST action set for
+ * a given (state, symbol) cell always wins; later attempts are logged
+ * but never overwrite it.
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include "parsing_table.h"
@@ -11,6 +26,8 @@ static int actions_equal(ParsingAction a, ParsingAction b) {
     return a.type == b.type && a.value == b.value;
 }
 
+/* Attempts to set action[state][symbol]. If a different action is
+   already there, records a conflict instead of overwriting. */
 static void set_action(const Grammar *g, ParsingTable *pt, ConflictList *conflicts,
                         int state, int symbol, ParsingAction new_action) {
     ParsingAction *cell = &pt->action[state][symbol];
@@ -18,7 +35,7 @@ static void set_action(const Grammar *g, ParsingTable *pt, ConflictList *conflic
         *cell = new_action;
         return;
     }
-    if (actions_equal(*cell, new_action)) return;
+    if (actions_equal(*cell, new_action)) return; /* identical, not a conflict */
 
     Conflict c;
     c.state = state;
@@ -29,6 +46,7 @@ static void set_action(const Grammar *g, ParsingTable *pt, ConflictList *conflic
                  ? CONFLICT_SHIFT_REDUCE : CONFLICT_REDUCE_REDUCE;
     conflict_list_add(conflicts, c);
     (void)g;
+    /* existing action is kept; do not overwrite */
 }
 
 ParsingTable *parsing_table_build(const Grammar *g, const CanonicalCollection *cc,
@@ -52,6 +70,7 @@ ParsingTable *parsing_table_build(const Grammar *g, const CanonicalCollection *c
     for (int i = 0; i < cc->count; i++) {
         State *state = cc->states[i];
 
+        /* Shift + accept actions, and GOTO entries, come from transitions. */
         for (int t = 0; t < state->transition_count; t++) {
             int sym = state->transitions[t].symbol;
             int target = state->transitions[t].target_state;
@@ -63,6 +82,7 @@ ParsingTable *parsing_table_build(const Grammar *g, const CanonicalCollection *c
             }
         }
 
+        /* Reduce + accept actions come from complete items. */
         for (int k = 0; k < state->items->count; k++) {
             const LR1Item *item = &state->items->items[k];
             if (!lr1_item_is_complete(g, item)) continue;

@@ -1,3 +1,11 @@
+/*
+ * first.c
+ * Owner: Member 2 - Ephraim Immanuel (24BEL0091)
+ *
+ * Standard fixed-point computation of nullability and FIRST sets for
+ * every grammar symbol, plus FIRST-of-a-sequence used by CLOSURE to
+ * compute LR(1) lookaheads (FIRST(beta a)).
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include "first.h"
@@ -45,6 +53,10 @@ FirstSetsTable *first_sets_compute(Grammar *g) {
 
     for (int i = 0; i < g->symbol_count; i++) symbolset_init(&t->first_sets[i]);
 
+    /* Base cases: FIRST(terminal) = {terminal}. EPSILON is nullable and
+       FIRST(EPSILON) = {EPSILON} conceptually, but we treat nullability
+       via the `nullable` flag rather than stuffing EPSILON into FIRST
+       sets of non-terminals (cleaner for the closure computation). */
     for (int i = 0; i < g->symbol_count; i++) {
         if (g->symbols[i].type == SYM_TERMINAL || g->symbols[i].type == SYM_END) {
             symbolset_add(&t->first_sets[i], i);
@@ -61,6 +73,7 @@ FirstSetsTable *first_sets_compute(Grammar *g) {
             Production *prod = &g->productions[p];
             int A = prod->lhs;
 
+            /* A -> epsilon (rhs_len == 0) makes A nullable. */
             if (prod->rhs_len == 0) {
                 if (!t->nullable[A]) { t->nullable[A] = 1; changed = 1; }
                 continue;
@@ -71,6 +84,7 @@ FirstSetsTable *first_sets_compute(Grammar *g) {
                 int Xk = prod->rhs[k];
 
                 if (all_nullable_so_far) {
+                    /* Add FIRST(Xk) \ {} into FIRST(A) */
                     for (int j = 0; j < t->first_sets[Xk].count; j++) {
                         if (symbolset_add(&t->first_sets[A], t->first_sets[Xk].symbols[j]))
                             changed = 1;
@@ -81,7 +95,7 @@ FirstSetsTable *first_sets_compute(Grammar *g) {
                     break;
                 }
             }
-
+            /* If every symbol on the RHS is nullable, A is nullable too. */
             if (all_nullable_so_far && !t->nullable[A]) {
                 t->nullable[A] = 1;
                 changed = 1;
@@ -114,11 +128,11 @@ SymbolSet first_of_sequence(const FirstSetsTable *t, const int *seq, int len,
             break;
         }
     }
-
     if (all_nullable_so_far) {
+        /* every symbol in seq can vanish -> the trailing lookahead itself
+           is also a valid "first" symbol of (seq, lookahead) */
         symbolset_add(&result, trailing_lookahead);
     }
-
     return result;
 }
 

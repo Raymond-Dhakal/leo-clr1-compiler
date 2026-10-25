@@ -1,0 +1,3 @@
+FLOAT f
+FOR f <- 1 TO 5 STEP ~0.0 DO
+END

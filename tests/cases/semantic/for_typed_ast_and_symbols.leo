@@ -1,0 +1,3 @@
+INT i
+FOR i <- 1 TO 3 DO PRINT i END
+FOR INT k <- 1 TO 2 DO END

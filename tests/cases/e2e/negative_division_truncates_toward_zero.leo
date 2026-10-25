@@ -1,0 +1,8 @@
+INT a
+INT b
+INPUT a
+INPUT b
+PRINTN a / b
+PRINTN a MOD b
+PRINTN ~a / b
+PRINTN ~a MOD b

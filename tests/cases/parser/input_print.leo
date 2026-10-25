@@ -1,0 +1,4 @@
+INT x
+INPUT x
+PRINTN x
+PRINTN x + 5

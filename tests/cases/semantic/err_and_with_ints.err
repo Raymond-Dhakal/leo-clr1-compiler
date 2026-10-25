@@ -1,0 +1,1 @@
+semantic error: operator 'AND' requires BOOL operands, but got INT and INT

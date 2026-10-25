@@ -1,0 +1,8 @@
+    INPUT a
+    INPUT b
+    INPUT c
+    PRINTN a
+    PRINTN b
+    PRINTN c
+    t1 = a + 5
+    PRINTN t1

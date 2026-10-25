@@ -1,3 +1,17 @@
+/*
+ * closure.c
+ * Owner: Member 3 - Goyal Hemant Anil (24BYB0059)
+ *
+ * CLOSURE(I) for Canonical LR(1):
+ *   for every item [A -> alpha . B beta, a] in I where B is a
+ *   non-terminal, and for every production B -> gamma, add
+ *   [B -> . gamma, b] for every b in FIRST(beta a).
+ * Repeat until no more items can be added (fixed point).
+ *
+ * This is what distinguishes CLR(1) from LALR/SLR: lookaheads are
+ * computed fresh per item via FIRST(beta a), never approximated with
+ * FOLLOW(B).
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include "closure.h"
@@ -19,8 +33,12 @@ void itemset_destroy(ItemSet *set) {
 }
 
 int itemset_add_item(ItemSet *set, LR1Item item) {
+    /* Same test as lr1_item_equal(), written out: this loop dominates the time
+       needed to build the canonical collection. */
     for (int i = 0; i < set->count; i++) {
-        if (lr1_item_equal(&set->items[i], &item)) return 0;
+        const LR1Item *it = &set->items[i];
+        if (it->production_id == item.production_id && it->dot_pos == item.dot_pos &&
+            it->lookahead == item.lookahead) return 0;  /* already present */
     }
     if (set->count >= set->capacity) {
         set->capacity *= 2;
@@ -36,12 +54,16 @@ ItemSet *itemset_copy(const ItemSet *set) {
     return copy;
 }
 
+/* Two item sets are equal (as canonical LR(1) states) iff they contain
+   exactly the same set of (core, lookahead) items, order independent. */
 int itemset_equal(const ItemSet *a, const ItemSet *b) {
     if (a->count != b->count) return 0;
     for (int i = 0; i < a->count; i++) {
         int found = 0;
         for (int j = 0; j < b->count; j++) {
-            if (lr1_item_equal(&a->items[i], &b->items[j])) { found = 1; break; }
+            const LR1Item *x = &a->items[i], *y = &b->items[j];
+            if (x->production_id == y->production_id && x->dot_pos == y->dot_pos &&
+                x->lookahead == y->lookahead) { found = 1; break; }
         }
         if (!found) return 0;
     }
@@ -62,6 +84,10 @@ ItemSet *closure_compute(Grammar *g, const FirstSetsTable *first, const ItemSet 
     int changed = 1;
     while (changed) {
         changed = 0;
+        /* Snapshot count: iterate up to the count at the START of this
+           pass; newly appended items are picked up on the NEXT pass.
+           This avoids re-scanning items on every single addition while
+           still reaching the correct fixed point. */
         int pass_count = result->count;
         for (int i = 0; i < pass_count; i++) {
             LR1Item item = result->items[i];

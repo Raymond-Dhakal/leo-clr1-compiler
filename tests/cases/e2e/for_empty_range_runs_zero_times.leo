@@ -1,0 +1,7 @@
+FOR INT i <- 5 TO 1 DO
+    PRINTN i
+END
+FOR INT j <- 1 TO 5 STEP ~1 DO
+    PRINTN j
+END
+PRINTN 99
