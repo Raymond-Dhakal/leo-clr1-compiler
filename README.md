@@ -16,12 +16,12 @@ to compile if that grammar has conflicts.
 
 ## Team
 
-| Member | Registration | Original module |
+| Member | Registration | Responsibilities and main files |
 |---|---|---|
-| Gurutheja Kavuturi | 24BEL0086 | Grammar engine and lexer (`grammar.c`, `lexer.c`) |
-| Ephraim Immanuel | 24BEL0091 | FIRST sets and lookahead (`first.c`) |
-| Goyal Hemant Anil | 24BYB0059 | LR(1) items, closure, goto (`lr1_item.c`, `closure.c`, `goto.c`) |
-| Raymond Dhakal | 24BEL0100 | Canonical collection, tables, conflicts, parser (`state.c`, `canonical.c`, `parsing_table.c`, `conflict.c`, `parser.c`, `main.c`) |
+| Gurutheja Kavuturi | 24BEL0086 | CLR(1): grammar engine and original lexer (`grammar.c`, `lexer.c`). Leo compiler: lexical analysis and semantic analysis (`src/compiler/nova_lexer.c`, `src/compiler/nova_semantic.c`). |
+| Ephraim Immanuel | 24BEL0091 | CLR(1): FIRST sets and lookahead (`first.c`). Leo compiler: intermediate-code generation (`src/compiler/nova_ir.c`). |
+| Goyal Hemant Anil | 24BYB0059 | CLR(1): LR(1) items, closure, and GOTO (`lr1_item.c`, `closure.c`, `goto.c`). Leo compiler: code optimization (`src/compiler/nova_opt.c`). |
+| Raymond Dhakal | 24BEL0100 | CLR(1): canonical collection, tables, conflicts, parser, and driver (`state.c`, `canonical.c`, `parsing_table.c`, `conflict.c`, `parser.c`, `main.c`). Leo compiler/product: C code generation and build (`src/compiler/nova_codegen.c`, `src/compiler/nova_build.c`), web frontend/playground (`web/`), and RAG project Q&A (`rag/`). |
 
 ## Build
 
@@ -177,6 +177,18 @@ and `web/examples.js`; `make web` refreshes only those two).
 | 4 Intermediate code | `src/compiler/nova_ir.c` | typed three address code with labels and jumps |
 | 5 Optimization | `src/compiler/nova_opt.c` | optimized IR and statistics |
 | 6 Code generation | `src/compiler/nova_codegen.c`, `nova_build.c` | C source, then a native executable via GCC |
+
+### Methods used, mapped to the syllabus
+
+| Syllabus module | Method used in Leo | Scope and syllabus topics not implemented |
+|---|---|---|
+| 1. Introduction and lexical analysis | A hand-written, longest-match scanner recognizes lexemes and emits tokens with attributes such as line and column. | The scanner does not use the direct regular-expression-to-DFA method or Lex. LLVM is not used; Leo has its own frontend and emits C for GCC. |
+| 2. Syntax analysis | Table-driven Canonical LR(1) shift-reduce parsing. CLOSURE propagates lookaheads with `FIRST(βa)`; GOTO builds the canonical collection and ACTION/GOTO tables. Parser reductions build the AST. | This project uses CLR(1), not LL(1), SLR(1), or LALR(1). |
+| 3. Semantic analysis | A post-parse AST traversal implements syntax-directed checks using nested symbol-table scopes, type rules, and source-located diagnostics. | Semantic checking is a separate AST pass; it is not evaluated as a formal L-attributed definition during parsing. |
+| 4. Intermediate code generation | The AST is lowered to typed three-address code with temporaries. Branches and labels represent conditionals and loops; short-circuit Boolean operators become control flow. | Labels are allocated directly during emission; a separate backpatching pass is not used. Switch-case translation is not part of Leo. |
+| 5. Code optimization | Machine-independent optimization over a control-flow graph: basic blocks, forward constant propagation/folding, safe algebraic identities, local copy propagation, branch cleanup, and backward liveness for dead-code elimination. | The current optimizer does not implement DAG-based basic-block optimization or loop-specific transformations such as loop-invariant code motion. |
+| 6. Code generation | Leo IR is emitted as C; GCC then performs native machine-code generation and its own register allocation. Runtime helpers preserve Leo's input, arithmetic, and error behavior. | Leo does not implement its own target-machine register allocator, next-use analysis, or activation-record layout. |
+| 7. Parallelism | Not implemented in the current compiler. | Automatic parallelization, cache/vectorization optimization, instruction scheduling, software pipelining, and SSA are outside the current scope. |
 
 The driver is `src/compiler/leoc.c`. Design notes are in `docs/design.md`.
 

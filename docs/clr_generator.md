@@ -12,12 +12,12 @@ parses an input string against the result.
 
 ## Team
 
-| Member | Registration | Module |
-|---|---|---|
-| Gurutheja Kavuturi | 24BEL0086 | Grammar Engine & Lexer (`grammar.c`, `lexer.c`) |
-| Ephraim Immanuel | 24BEL0091 | FIRST/FOLLOW & Lookahead (`first.c`) |
-| Goyal Hemant Anil | 24BYB0059 | LR(1) Items, Closure & GOTO (`lr1_item.c`, `closure.c`, `goto.c`) |
-| Raymond Dhakal | 24BEL0100 | Canonical Collection, Parsing Tables, Conflicts, Integration (`state.c`, `canonical.c`, `parsing_table.c`, `conflict.c`, `parser.c`, `main.c`) |
+| Member | Registration | CLR(1) parser-generator responsibility | Leo compiler/product responsibility |
+|---|---|---|---|
+| Gurutheja Kavuturi | 24BEL0086 | Grammar engine and original lexer (`grammar.c`, `lexer.c`) | Lexical analysis and semantic analysis (`src/compiler/nova_lexer.c`, `src/compiler/nova_semantic.c`) |
+| Ephraim Immanuel | 24BEL0091 | FIRST sets and lookahead (`first.c`) | Intermediate-code generation (`src/compiler/nova_ir.c`) |
+| Goyal Hemant Anil | 24BYB0059 | LR(1) items, closure, and GOTO (`lr1_item.c`, `closure.c`, `goto.c`) | Code optimization (`src/compiler/nova_opt.c`) |
+| Raymond Dhakal | 24BEL0100 | Canonical collection, parsing tables, conflicts, parser, and integration (`state.c`, `canonical.c`, `parsing_table.c`, `conflict.c`, `parser.c`, `main.c`) | C code generation and build (`src/compiler/nova_codegen.c`, `src/compiler/nova_build.c`), web frontend/playground (`web/`), and RAG project Q&A (`rag/`) |
 
 ## Building
 

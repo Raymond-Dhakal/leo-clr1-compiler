@@ -574,6 +574,29 @@ The C backend maps INT to \code{long long}, FLOAT to \code{double}, and BOOL to 
 
 Generated C is compiled with options that preserve the documented integer wrapping behavior and links the math library when needed. The driver writes C and executable outputs under the selected output directory and checks that it will not overwrite the input source. Process execution passes an argument vector to fork/exec rather than forming a shell string. The source program is not run unless a run mode is selected.
 
+\section{Syllabus Alignment and Method Selection}
+The project uses the following methods from the course syllabus. This mapping also records syllabus topics that were considered but are not implemented, so the report does not imply that Leo uses methods absent from the source code.
+
+\begin{longtable}{p{0.16\textwidth}p{0.43\textwidth}p{0.31\textwidth}}
+\caption{Compiler methods mapped to syllabus modules}\\
+\toprule
+\textbf{Module} & \textbf{Method implemented} & \textbf{Scope boundary}\\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Module} & \textbf{Method implemented} & \textbf{Scope boundary}\\
+\midrule
+\endhead
+1. Lexical analysis & A hand-written longest-match scanner classifies lexemes into tokens and records line/column attributes. & No direct regular-expression-to-DFA construction or Lex-generated scanner is used. LLVM is not used; Leo emits C for GCC.\\
+2. Syntax analysis & Table-driven Canonical LR(1) shift-reduce parsing. CLOSURE propagates lookaheads using FIRST of the sequence beta followed by the item's lookahead; GOTO builds the canonical states. Reductions construct the AST. & CLR(1) is selected instead of LL(1), SLR(1), or LALR(1).\\
+3. Semantic analysis & A separate AST traversal checks declarations, nested scopes, identifier use, type compatibility, and Boolean conditions using a symbol-table environment. & This is not a formal L-attributed definition evaluator embedded in parser reductions.\\
+4. Intermediate code & The AST is lowered to typed three-address code with temporaries. Labels and conditional/unconditional jumps represent control flow; AND and OR use short-circuit branches. & Labels are allocated directly during emission; a separate backpatching pass and switch-case translation are not implemented.\\
+5. Code optimization & The optimizer forms basic blocks and a control-flow graph, applies forward constant propagation/folding, safe algebraic identities and local copy propagation, cleans constant branches, and uses backward liveness for dead-code elimination. & DAG-based basic-block optimization and dedicated loop optimizations are not implemented. Transformations preserve runtime failures and Leo's numeric semantics.\\
+6. Code generation & The backend translates typed IR into C with Leo runtime helpers. GCC compiles that C to native code and performs target-specific register allocation. & Leo has no separate next-use analysis, register allocator, target instruction selector, or activation-record implementation.\\
+7. Parallelism & Not implemented in the current system. & Automatic parallelization, cache/vectorization optimization, instruction scheduling, software pipelining, and SSA are outside the current scope.\\
+\bottomrule
+\end{longtable}
+
 \section{Driver, Exit Status, and Phase Reporting}
 The \code{leoc} driver parses command-line options, locates the grammar, initializes phase structures, and coordinates cleanup. Options select token, AST, typed-AST, symbol, IR, optimized IR, C output, native build, interpreter, trace, and grammar-inspection behavior. Quiet mode suppresses per-phase progress messages. Exit statuses distinguish usage/file, lexical, syntax, semantic, grammar, and C compilation failures.
 
@@ -851,17 +874,22 @@ Create a Python virtual environment, install \code{requirements.txt}, set \code{
 If port 8000 is already occupied, stop the other server process before starting another instance. If a browser still shows an old build, reload the page without cache. If Ask Leo cannot reach Groq, check the backend terminal, confirm the key is in the root .env, and verify the virtual environment is active. If WebAssembly cannot load, confirm the page is served over HTTP and that the WASM file and grammar are available in the web directory.
 
 \chapter{PROJECT CONTRIBUTION AND FILE MAP}
-The team allocation below is transcribed from the project README and review deck. The columns reflect the documented original module allocation; work on compiler extension, interface, integration, testing, and report preparation may have involved collaboration across the listed roles.
+Each member is listed once with their original CLR(1) parser-generator responsibility and their compiler/product responsibility.
 
-\begin{longtable}{p{0.22\textwidth}p{0.15\textwidth}p{0.54\textwidth}}
-\caption{Documented Team Roles}\\
+\begin{longtable}{p{0.18\textwidth}p{0.12\textwidth}p{0.40\textwidth}p{0.21\textwidth}}
+\caption{Combined Team Responsibilities}\\
 \toprule
-\textbf{Member} & \textbf{Reg. ID} & \textbf{Documented module focus}\\
+\textbf{Member} & \textbf{Reg. ID} & \textbf{CLR(1) parser-generator} & \textbf{Leo compiler/product}\\
 \midrule
-Gurutheja Kavuturi & 24BEL0086 & Grammar engine and lexer.\\
-Ephraim Immanuel I & 24BEL0091 & FIRST sets and lookahead computation.\\
-Goyal Hemant Anil & 24BYB0059 & LR(1) items, closure, and GOTO.\\
-Raymond Dhakal & 24BEL0100 & Canonical collection, tables, conflicts, parser integration, and driver.\\
+\endfirsthead
+\toprule
+\textbf{Member} & \textbf{Reg. ID} & \textbf{CLR(1) parser-generator} & \textbf{Leo compiler/product}\\
+\midrule
+\endhead
+Gurutheja Kavuturi & 24BEL0086 & Grammar engine and original lexer. & Lexical analysis and semantic analysis. Files: \filepath{src/compiler/nova_lexer.c}, \filepath{src/compiler/nova_semantic.c}.\\
+Ephraim Immanuel I & 24BEL0091 & FIRST sets and lookahead computation. & Intermediate-code generation. File: \filepath{src/compiler/nova_ir.c}.\\
+Goyal Hemant Anil & 24BYB0059 & LR(1) items, closure, and GOTO. & Code optimization. File: \filepath{src/compiler/nova_opt.c}.\\
+Raymond Dhakal & 24BEL0100 & Canonical collection, tables, conflicts, parser integration, and driver. & C code generation, web frontend/playground, and RAG project Q\&A. Files: \filepath{src/compiler/nova_codegen.c}, \filepath{src/compiler/nova_build.c}, \filepath{web/}, \filepath{rag/}.\\
 \bottomrule
 \end{longtable}
 

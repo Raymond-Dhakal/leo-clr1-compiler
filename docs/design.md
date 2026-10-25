@@ -144,6 +144,39 @@ source.leo
   nova_build.c      GCC through fork and execvp
 ```
 
+## Team ownership
+
+The table combines each person's original CLR(1) parser-generator assignment
+(also documented in `clr_generator.md`) with their compiler/product
+responsibilities, so each team member appears once.
+
+| Member | CLR(1) and compiler/product responsibilities | Main files |
+|---|---|---|
+| Gurutheja Kavuturi | CLR(1): grammar engine and original lexer. Leo: lexical and semantic analysis. | `src/grammar.c`, `src/lexer.c`, `src/compiler/nova_lexer.c`, `src/compiler/nova_semantic.c` |
+| Ephraim Immanuel | CLR(1): FIRST sets and lookahead. Leo: intermediate-code generation. | `src/first.c`, `src/compiler/nova_ir.c` |
+| Goyal Hemant Anil | CLR(1): LR(1) items, closure, and GOTO. Leo: code optimization. | `src/lr1_item.c`, `src/closure.c`, `src/goto.c`, `src/compiler/nova_opt.c` |
+| Raymond Dhakal | CLR(1): canonical collection, tables, conflicts, and parser integration. Leo/product: C code generation, web frontend/playground, and RAG project Q&A. | `src/canonical.c`, `src/parsing_table.c`, `src/conflict.c`, `src/parser.c`, `src/compiler/nova_codegen.c`, `src/compiler/nova_build.c`, `web/`, `rag/` |
+
+## Syllabus alignment and implemented methods
+
+This table distinguishes the compiler-design methods present in the code from
+related syllabus topics that the project does not claim to implement.
+
+| Module and phase | Method implemented | Boundary |
+|---|---|---|
+| 1. Lexical analysis | Hand-written maximal-munch/longest-match scanning. It classifies lexemes into token kinds and records source-position attributes. | No direct regular-expression-to-DFA construction or Lex-generated scanner is used. LLVM is not used; Leo emits C for GCC. |
+| 2. Syntax analysis | Canonical LR(1) table-driven shift-reduce parser. CLOSURE uses `FIRST(βa)` for lookahead propagation; GOTO constructs states and transitions; reductions build the AST. | CLR(1) is the selected method; LL(1), SLR(1), and LALR(1) are not used for Leo parsing. |
+| 3. Semantic analysis | A separate AST traversal checks declarations, nested scopes, identifier use, expression/assignment types, and Boolean conditions. This is syntax-directed semantic checking with a symbol-table environment. | The pass is not a formal L-attributed definition evaluator embedded in parser reductions. |
+| 4. Intermediate code | AST-to-typed-three-address-code lowering. Expressions use temporaries; structured control flow uses labels and conditional/unconditional jumps; AND/OR use short-circuit control flow. | Labels are created during code emission, so a distinct backpatching algorithm is not used. Switch-case lowering is not implemented. |
+| 5. Optimization | Basic blocks and a control-flow graph; forward data-flow constant propagation/folding; safe algebraic simplification; local copy propagation; constant-branch cleanup; backward liveness and dead-code elimination. | No DAG-based basic-block optimizer or dedicated loop optimization is implemented. Transformations preserve possible runtime errors and Leo's integer/floating-point behavior. |
+| 6. Code generation | Typed IR is translated to C with Leo-specific runtime helpers. GCC compiles the generated C to a native executable and handles target-specific register allocation. | Leo itself has no next-use analysis, register allocator, target-machine instruction selector, or activation-record implementation. |
+| 7. Parallelism | Not implemented in the current system. | Automatic parallelization, cache/vectorization optimization, instruction scheduling, software pipelining, and SSA remain future work. |
+
+The web playground runs the compiler's WebAssembly build through an IR
+interpreter; it does not perform native C compilation in the browser. The RAG
+service is a separate project-information interface: local retrieval selects
+code/documentation excerpts and Groq generates answers from those excerpts.
+
 ## Using the generator without changing it
 
 `parser_run` keeps its exact behaviour and trace. A shared `parser_core` adds
